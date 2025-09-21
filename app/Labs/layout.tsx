@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import TOC from "./TOC";
-import "./layout.scss"
+import "./layout.scss";
 
 export default function LabsLayout({
   children,
@@ -11,7 +11,6 @@ export default function LabsLayout({
         <TOC />
       </div>
       <div className="lab-content">
-        <h1>Labs</h1>
         {children}
       </div>
     </div>

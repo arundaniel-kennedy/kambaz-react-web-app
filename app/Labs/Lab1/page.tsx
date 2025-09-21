@@ -1,3 +1,4 @@
+"use client";
 
 export default function Lab1() {
   return (
@@ -55,8 +56,30 @@ export default function Lab1() {
           <li>Flip and cook the other side.</li>
           <li>Serve and enjoy!</li>
         </ol>
-        My favorite recipe:
-        <ol id="wd-your-favorite-recipe">{/* complete on your own */}</ol>
+        My favorite recipe: Biriyani
+        <ol id="wd-your-favorite-recipe">
+          <li>Marinate the chicken</li>
+          <li>Prepare the aromatics</li>
+          <li>Cook the chicken</li>
+          <li>Add rice and simmer</li>
+          <li>Cook on "dum"</li>
+          <li>Rest and serve</li>
+        </ol>
+        <h5>Unordered List Tag</h5>
+        My favorite books (in no particular order)
+        <ul id="wd-my-books">
+          <li>Dune</li>
+          <li>Lord of the Rings</li>
+          <li>Ender's Game</li>
+          <li>Red Mars</li>
+          <li>The Forever War</li>
+        </ul>
+        Your favorite books (in no particular order)
+        <ul id="wd-your-books">
+          <li>Sherlock Homes</li>
+          <li>Lord of the Rings</li>
+          <li>Wimpy Kid</li>
+        </ul>
       </div>
       <div id="wd-tables">
         <h4>Table Tag</h4>
@@ -73,20 +96,68 @@ export default function Lab1() {
             <tr>
               <td>Q1</td>
               <td>HTML</td>
-              <td>2/3/21</td>
-              <td>85</td>
+              <td>9/8/25</td>
+              <td>99</td>
             </tr>
             <tr>
               <td>Q2</td>
               <td>CSS</td>
-              <td>2/10/21</td>
-              <td>90</td>
+              <td>9/15/25</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>Q3</td>
+              <td>JS</td>
+              <td>9/22/25</td>
+              <td>98</td>
+            </tr>
+            <tr>
+              <td>Q4</td>
+              <td>CSS</td>
+              <td>9/29/25</td>
+              <td>99</td>
+            </tr>
+            <tr>
+              <td>Q5</td>
+              <td>HTML</td>
+              <td>10/6/25</td>
+              <td>97</td>
+            </tr>
+            <tr>
+              <td>Q6</td>
+              <td>CSS</td>
+              <td>10/13/25</td>
+              <td>99</td>
+            </tr>
+            <tr>
+              <td>Q7</td>
+              <td>HTML</td>
+              <td>10/20/25</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>Q8</td>
+              <td>CSS</td>
+              <td>10/27/25</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>Q9</td>
+              <td>HTML</td>
+              <td>11/3/25</td>
+              <td>96</td>
+            </tr>
+            <tr>
+              <td>Q10</td>
+              <td>CSS</td>
+              <td>11/10/25</td>
+              <td>99</td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
               <td colSpan={3}>Average</td>
-              <td>90</td>
+              <td>98</td>
             </tr>
           </tfoot>
         </table>
@@ -128,137 +199,109 @@ export default function Lab1() {
             title="The last name"
             id="wd-text-fields-last-name"
           />
-          {/* copy rest of form elements here  */}
+          <h5>Text boxes</h5>
+          <label>Biography:</label>
+          <br />
+          <textarea
+            id="wd-textarea"
+            cols={30}
+            rows={10}
+            defaultValue={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }
+          ></textarea>
+          <h5 id="wd-buttons">Buttons</h5>
+          <button
+            type="button"
+            onClick={() => alert("Life is Good!")}
+            id="wd-all-good"
+          >
+            Hello World!
+          </button>
+          <h5 id="wd-radio-buttons">Radio buttons</h5>
+          <label>Favorite movie genre:</label>
+          <br />
+          <input type="radio" name="radio-genre" id="wd-radio-comedy" />
+          <label htmlFor="wd-radio-comedy">Comedy</label>
+          <br />
+          <input type="radio" name="radio-genre" id="wd-radio-drama" />
+          <label htmlFor="wd-radio-drama">Drama</label>
+          <br />
+          <input type="radio" name="radio-genre" id="wd-radio-scifi" />
+          <label htmlFor="wd-radio-scifi">Science Fiction</label>
+          <br />
+          <input type="radio" name="radio-genre" id="wd-radio-fantasy" />
+          <label htmlFor="wd-radio-fantasy">Fantasy</label>
+          <h5 id="wd-checkboxes">Checkboxes</h5>
+          <label>Favorite movie genre:</label>
+          <br />
+          <input type="checkbox" name="check-genre" id="wd-chkbox-comedy" />
+          <label htmlFor="wd-chkbox-comedy">Comedy</label>
+          <br />
+          <input type="checkbox" name="check-genre" id="wd-chkbox-drama" />
+          <label htmlFor="wd-chkbox-drama">Drama</label>
+          <br />
+          <input type="checkbox" name="check-genre" id="wd-chkbox-scifi" />
+          <label htmlFor="wd-chkbox-scifi">Science Fiction</label>
+          <br />
+          <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" />
+          <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
+          <h4 id="wd-dropdowns">Dropdowns</h4>
+          <h5>Select one</h5>
+          <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label>
+          <br />
+          <select id="wd-select-one-genre" defaultValue={"SCIFI"}>
+            <option value="COMEDY">Comedy</option>
+            <option value="DRAMA">Drama</option>
+            <option value="SCIFI">Science Fiction</option>
+            <option value="FANTASY">Fantasy</option>
+          </select>
+          <h5>Select many</h5>
+          <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label>
+          <br />
+          <select
+            multiple
+            id="wd-select-many-genre"
+            defaultValue={["COMEDY", "SCIFI"]}
+          >
+            <option value="COMEDY">Comedy</option>
+            <option value="DRAMA">Drama</option>
+            <option value="SCIFI">Science Fiction</option>
+            <option value="FANTASY">Fantasy</option>
+          </select>
+          <h4>Other HTML field types</h4>
+          <label htmlFor="wd-text-fields-email"> Email: </label>
+          <input
+            type="email"
+            placeholder="jdoe@somewhere.com"
+            id="wd-text-fields-email"
+          />
+          <br />
+          <label htmlFor="wd-text-fields-salary-start"> Starting salary:</label>
+          <input
+            type="number"
+            defaultValue="100000"
+            placeholder="1000"
+            id="wd-text-fields-salary-start"
+          />
+          <br />
+          <label htmlFor="wd-text-fields-rating"> Rating: </label>
+          <input
+            type="range"
+            defaultValue="4"
+            max="5"
+            placeholder="Doe"
+            id="wd-text-fields-rating"
+          />
+          <br />
+          <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
+          <input
+            type="date"
+            defaultValue="2000-01-21"
+            id="wd-text-fields-dob"
+          />
+          <br />
         </form>
-      </div>
-      <div id="wd-textarea-wrapper">
-        <h5>Text boxes</h5>
-        <label>Biography:</label>
-        <br />
-        <textarea id="wd-textarea" cols={30} rows={10} defaultValue={`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.`}>
-        </textarea>
-      </div>
-      <div id="wd-button-wrapper">
-        <h5 id="wd-buttons">Buttons</h5>
-        <button
-          type="button"
-          // onClick={() => alert("Life is Good!")}
-          id="wd-all-good"
-        >
-          Hello World!
-        </button>
-      </div>
-      <div id="wd-radio-wrapper">
-        <h5 id="wd-radio-buttons">Radio buttons</h5>
-
-        <label>Favorite movie genre:</label>
-        <br />
-
-        <input type="radio" name="radio-genre" id="wd-radio-comedy" />
-        <label htmlFor="wd-radio-comedy">Comedy</label>
-        <br />
-
-        <input type="radio" name="radio-genre" id="wd-radio-drama" />
-        <label htmlFor="wd-radio-drama">Drama</label>
-        <br />
-
-        <input type="radio" name="radio-genre" id="wd-radio-scifi" />
-        <label htmlFor="wd-radio-scifi">Science Fiction</label>
-        <br />
-        <input type="radio" name="radio-genre" id="wd-radio-fantasy" />
-        <label htmlFor="wd-radio-fantasy">Fantasy</label>
-      </div>
-      <div id="wd-checkbox-wrapper">
-        <h5 id="wd-checkboxes">Checkboxes</h5>
-        <label>Favorite movie genre:</label>
-        <br />
-
-        <input type="checkbox" name="check-genre" id="wd-chkbox-comedy" />
-        <label htmlFor="wd-chkbox-comedy">Comedy</label>
-        <br />
-
-        <input type="checkbox" name="check-genre" id="wd-chkbox-drama" />
-        <label htmlFor="wd-chkbox-drama">Drama</label>
-        <br />
-
-        <input type="checkbox" name="check-genre" id="wd-chkbox-scifi" />
-        <label htmlFor="wd-chkbox-scifi">Science Fiction</label>
-        <br />
-
-        <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" />
-        <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
-      </div>
-      <div id="wd-dropdown-wrapper">
-        <h4 id="wd-dropdowns">Dropdowns</h4>
-
-        <h5>Select one</h5>
-        <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label>
-        <br />
-        <select id="wd-select-one-genre">
-          <option value="COMEDY">Comedy</option>
-          <option value="DRAMA">Drama</option>
-          <option value="SCIFI">
-            Science Fiction
-          </option>
-          <option value="FANTASY">Fantasy</option>
-        </select>
-
-        <h5>Select many</h5>
-        <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label>
-        <br />
-        <select multiple id="wd-select-many-genre">
-          <option value="COMEDY">
-            {" "}
-            Comedy{" "}
-          </option>
-          <option value="DRAMA"> Drama </option>
-          <option value="SCIFI">
-            {" "}
-            Science Fiction{" "}
-          </option>
-          <option value="FANTASY"> Fantasy </option>
-        </select>
-      </div>
-      <div className="wd-other-fields">
-        <h4>Other HTML field types</h4>
-
-        <label htmlFor="wd-text-fields-email"> Email: </label>
-        <input
-          type="email"
-          placeholder="jdoe@somewhere.com"
-          id="wd-text-fields-email"
-        />
-        <br />
-
-        <label htmlFor="wd-text-fields-salary-start"> Starting salary:</label>
-        <input
-          type="number"
-          value="100000"
-          placeholder="1000"
-          id="wd-text-fields-salary-start"
-        />
-        <br />
-
-        <label htmlFor="wd-text-fields-rating"> Rating: </label>
-        <input
-          type="range"
-          value={4}
-          min={0}
-          max={6}
-          placeholder="Doe"
-          id="wd-text-fields-rating"
-        />
-        <br />
-
-        <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
-        <input type="date" value="2000-01-21" id="wd-text-fields-dob" />
-        <br />
       </div>
     </div>
   );
