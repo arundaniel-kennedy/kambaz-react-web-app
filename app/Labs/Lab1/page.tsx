@@ -62,7 +62,7 @@ export default function Lab1() {
           <li>Prepare the aromatics</li>
           <li>Cook the chicken</li>
           <li>Add rice and simmer</li>
-          <li>Cook on "dum"</li>
+          <li>Cook on dum</li>
           <li>Rest and serve</li>
         </ol>
         <h5>Unordered List Tag</h5>
@@ -70,7 +70,7 @@ export default function Lab1() {
         <ul id="wd-my-books">
           <li>Dune</li>
           <li>Lord of the Rings</li>
-          <li>Ender's Game</li>
+          <li>Ender&apos;s Game</li>
           <li>Red Mars</li>
           <li>The Forever War</li>
         </ul>
