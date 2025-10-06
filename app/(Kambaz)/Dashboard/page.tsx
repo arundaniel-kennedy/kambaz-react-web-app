@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   Button,
   Card,
@@ -17,7 +16,7 @@ export default function Dashboard() {
     title: string;
     desc: string;
   }
-  let courses: course[] = [
+  const courses: course[] = [
     {
       id: "1234",
       image: "/images/react.js.png",
