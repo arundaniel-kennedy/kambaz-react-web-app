@@ -14,17 +14,10 @@ export default function ModulesControls() {
         variant="danger"
         size="lg"
         className="me-1 float-end"
-        id="wd-collapse-all"
+        id="wd-add-module-btn"
       >
-        Collapse All
-      </Button>
-      <Button
-        variant="danger"
-        size="lg"
-        className="me-1 float-end"
-        id="wd-view-progress"
-      >
-        View Progress
+        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+        Module
       </Button>
       <Dropdown className="float-end me-2">
         <DropdownToggle variant="secondary" size="lg" id="wd-publish-all-btn">
@@ -49,13 +42,20 @@ export default function ModulesControls() {
         </DropdownMenu>
       </Dropdown>
       <Button
-        variant="danger"
+        variant="secondary"
         size="lg"
         className="me-1 float-end"
-        id="wd-add-module-btn"
+        id="wd-view-progress"
       >
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-        Module
+        View Progress
+      </Button>
+      <Button
+        variant="secondary"
+        size="lg"
+        className="me-1 float-end"
+        id="wd-collapse-all"
+      >
+        Collapse All
       </Button>
       {/* Implement the View Progress and Collapse All buttons with IDs wd-view-progress and wd-collapse-all */}
     </div>
