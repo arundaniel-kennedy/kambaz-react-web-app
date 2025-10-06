@@ -1,4 +1,8 @@
 import Link from "next/link";
+import AssignmentControls from "./AssignmentControls";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { BsGripVertical } from "react-icons/bs";
+import { MdEditDocument } from "react-icons/md";
 
 export default async function Assignments({
   params,
@@ -8,9 +12,21 @@ export default async function Assignments({
   const { cid } = await params;
   return (
     <div id="wd-assignments">
-      <input placeholder="Search for Assignments" id="wd-search-assignment" />
-      <button id="wd-add-assignment-group">+ Group</button>
-      <button id="wd-add-assignment">+ Assignment</button>
+      <AssignmentControls />
+      <ListGroup className="rounded-0 mt-5" id="wd-modules">
+        <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+          <div className="wd-title p-3 ps-2 bg-secondary">
+            <BsGripVertical className="me-2 fs-3" /> Assignments
+          </div>
+          <ListGroup className="wd-lessons rounded-0">
+            <ListGroupItem className="wd-lesson p-3 ps-2 d-flex flex-row gap-3">
+              <BsGripVertical className="fs-3" /> 
+              <MdEditDocument />
+              A1
+            </ListGroupItem>
+          </ListGroup>
+        </ListGroupItem>
+      </ListGroup>
       <h3 id="wd-assignments-title">
         ASSIGNMENTS 40% of Total <button>+</button>{" "}
       </h3>

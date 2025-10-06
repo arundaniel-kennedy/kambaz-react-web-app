@@ -1,23 +1,38 @@
 import Link from "next/link";
-import "./TOC.scss"
+import { Nav, NavItem, NavLink } from "react-bootstrap";
+// import "./TOC.scss";
 
 export default function TOC() {
- return (
-   <ul className="labs-sidebar">
-    <li>
-       <Link href="/" id="wd-kambaz-link">Kambaz</Link>
-     </li>
-     <li>
-       <Link href="/Labs" id="wd-home-link">Home </Link>
-     </li>
-     <li>
-       <Link href="/Labs/Lab1" id="wd-lab1-link">Lab 1 </Link>
-     </li>
-     <li>
-       <Link href="/Labs/Lab2" id="wd-lab2-link">Lab 2 </Link>
-     </li>
-     <li>
-       <Link href="/Labs/Lab3" id="wd-lab3-link">Lab 3 </Link>
-     </li>
-   </ul>
-);}
+  return (
+    <Nav variant="pills">
+      <NavItem>
+        <NavLink active href="/Labs" as={Link}>
+          Labs
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/Labs/Lab1" as={Link}>
+          Lab 1
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/Labs/Lab2" as={Link}>
+          Lab 2
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/Labs/Lab3" as={Link}>
+          Lab 3
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/" as={Link}>
+          Kambaz
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="https://github.com/arundaniel-kennedy" target="_blank">My GitHub</NavLink>
+      </NavItem>
+    </Nav>
+  );
+}
