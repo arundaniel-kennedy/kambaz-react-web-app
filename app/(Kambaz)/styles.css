@@ -34,3 +34,19 @@ body * {
 .wd-lesson {
   border-left: 3px solid green !important;
 }
+
+.wd-assignment-link {
+  text-decoration: none;
+  width: fit-content;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.w-70 {
+  width: 70%;
+}
+.w-30 {
+  width: 30%;
+}

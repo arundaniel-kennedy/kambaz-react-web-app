@@ -1,7 +1,7 @@
 import { Button, FormControl } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa6";
 
-export default function AssignmentControls() {
+export default function AssignmentsControls() {
     return (
         <div className="d-flex flex-row">
             <FormControl placeholder="Search for Assignments" id="wd-search-assignment" style={{width: "350px"}}/>
