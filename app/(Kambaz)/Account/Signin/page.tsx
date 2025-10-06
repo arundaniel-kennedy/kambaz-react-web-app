@@ -4,8 +4,8 @@ export default function Signin() {
   return (
     <div id="wd-signin-screen" style={{ width: "350px" }}>
       <h3>Sign in</h3>
-      <FormControl id="wd-username" placeholder="username" className="mb-2"/>
-      <FormControl id="wd-password" placeholder="password" type="password" className="mb-2"/>
+      <FormControl id="wd-username" placeholder="username" defaultValue={"alice"} className="mb-2"/>
+      <FormControl id="wd-password" placeholder="password" type="password" className="mb-2" defaultValue={"password"}/>
       <Link href="/Dashboard" id="wd-signin-btn" className="btn btn-primary w-100">
         Sign in
       </Link>
