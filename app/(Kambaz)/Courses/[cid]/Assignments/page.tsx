@@ -12,7 +12,7 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 
 function makeDateReadable(givenDate: string) {
   const locales = "default";
-  let parsedDate = new Date(givenDate);
+  const parsedDate = new Date(givenDate);
   const longMonth = parsedDate.toLocaleString(locales, { month: "long" });
   const date = parsedDate.getDate().toString().padStart(2, "0");
   const hour = (
@@ -40,8 +40,8 @@ export default function Assignments() {
           </div>
           <ListGroup className="wd-lessons rounded-0">
             {assignments
-              .filter((assignment: any) => assignment.course === cid)
-              .map((assignment: any) => {
+              .filter((assignment) => assignment.course === cid)
+              .map((assignment) => {
                 return (
                   <ListGroupItem
                     className="wd-lesson p-3 ps-2 d-flex flex-row gap-3 align-items-center"

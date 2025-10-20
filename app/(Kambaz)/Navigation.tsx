@@ -9,6 +9,7 @@ import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function KambazNavigation() {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ export default function KambazNavigation() {
         id="wd-neu-link"
         target="_blank"
       >
-        <img src="/images/NEU.png" width="75px" alt="Northeastern University" />
+        <Image src="/images/NEU.png" width={75} alt="Northeastern University" />
       </ListGroupItem>
 
       <ListGroupItem

@@ -16,7 +16,7 @@ export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const assignments = db.assignments;
 
-  let assignment = assignments.find((e) => e._id === aid && e.course === cid);
+  const assignment = assignments.find((e) => e._id === aid && e.course === cid);
 
   if (assignment !== undefined) {
     return (

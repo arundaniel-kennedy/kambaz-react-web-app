@@ -1,5 +1,4 @@
 import { IoEllipsisVertical } from "react-icons/io5";
-import GreenCheckmark from "./GreenCheckmark";
 import { FaPlus } from "react-icons/fa6";
 import { Badge } from "react-bootstrap";
 export default function AssignmentSectionControl() {

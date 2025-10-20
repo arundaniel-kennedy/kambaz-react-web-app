@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function SimpleArrays() {
   var functionScoped = 2;
   let blockScoped = 5;

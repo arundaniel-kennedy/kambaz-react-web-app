@@ -7,7 +7,6 @@ import { VscTarget } from "react-icons/vsc";
 import { SiGoogleanalytics } from "react-icons/si";
 import { BsMegaphone } from "react-icons/bs";
 import { IoBarChartSharp } from "react-icons/io5";
-import { CiBellOn } from "react-icons/ci";
 
 export default function CourseStatus() {
   return (
