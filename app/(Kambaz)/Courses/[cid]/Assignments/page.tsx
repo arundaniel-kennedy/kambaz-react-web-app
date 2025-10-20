@@ -1,3 +1,7 @@
+"use client";
+import { useParams } from "next/navigation";
+import * as db from "../../../Database";
+
 import Link from "next/link";
 import AssignmentsControls from "./AssignmentsControls";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
@@ -6,12 +10,25 @@ import { MdEditDocument } from "react-icons/md";
 import AssignmentSectionControl from "./AssignmentSectionControl";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 
-export default async function Assignments({
-  params,
-}: {
-  params: Promise<{ cid: string }>;
-}) {
-  const { cid } = await params;
+function makeDateReadable(givenDate: string) {
+  const locales = "default";
+  let parsedDate = new Date(givenDate);
+  const longMonth = parsedDate.toLocaleString(locales, { month: "long" });
+  const date = parsedDate.getDate().toString().padStart(2, "0");
+  const hour = (
+    parsedDate.getHours() % 12 != 0 ? parsedDate.getHours() % 12 : 12
+  )
+    .toString()
+    .padStart(2, "0");
+  const minute = parsedDate.getMinutes().toString().padStart(2, "0");
+  const last_bit = parsedDate.getHours() < 12 ? "AM" : "PM";
+  return `${longMonth} ${date} at ${hour}:${minute} ${last_bit}`;
+}
+
+export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments;
+
   return (
     <div id="wd-assignments">
       <AssignmentsControls />
@@ -22,36 +39,45 @@ export default async function Assignments({
             <AssignmentSectionControl />
           </div>
           <ListGroup className="wd-lessons rounded-0">
-            <ListGroupItem className="wd-lesson p-3 ps-2 d-flex flex-row gap-3 align-items-center">
-              <BsGripVertical className="fs-3" />
-              <MdEditDocument className="fs-3" />
-              <div className="d-flex flex-column">
-                <Link
-                  href={`/Courses/${cid}/Assignments/A1`}
-                  className="wd-assignment-link"
-                >
-                  <h4>A1</h4>
-                </Link>
-                <div className="d-flex flex-row flex-wrap gap-2">
-                  <span className="text-danger pe-2 border-end border-dark-subtle">
-                    Multiple Modules
-                  </span>
-                  <strong className="pe-2 border-end border-dark-subtle">
-                    Not available until{" "}
-                    <span style={{ fontWeight: "normal" }}>
-                      May 6 at 12:00am
-                    </span>
-                  </strong>
-                  <div className="pe-2 border-end border-dark-subtle">
-                    <strong>Due</strong>
-                    <span> May 20 at 11:59 PM</span>
-                  </div>
-                  <span>100 pts</span>
-                </div>
-              </div>
-              <AssignmentControlButtons />
-            </ListGroupItem>
-            <ListGroupItem className="wd-lesson p-3 ps-2 d-flex flex-row gap-3 align-items-center">
+            {assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => {
+                return (
+                  <ListGroupItem
+                    className="wd-lesson p-3 ps-2 d-flex flex-row gap-3 align-items-center"
+                    key={assignment._id}
+                  >
+                    <BsGripVertical className="fs-3" />
+                    <MdEditDocument className="fs-3" />
+                    <div className="d-flex flex-column">
+                      <Link
+                        href={`/Courses/${cid}/Assignments/${assignment._id}`}
+                        className="wd-assignment-link"
+                      >
+                        <h4>{assignment.title}</h4>
+                      </Link>
+                      <div className="d-flex flex-row flex-wrap gap-2">
+                        <span className="text-danger pe-2 border-end border-dark-subtle">
+                          Multiple Modules
+                        </span>
+                        <strong className="pe-2 border-end border-dark-subtle">
+                          Not available until{" "}
+                          <span style={{ fontWeight: "normal" }}>
+                            {makeDateReadable(assignment.available_date)}
+                          </span>
+                        </strong>
+                        <div className="pe-2 border-end border-dark-subtle">
+                          <strong>Due</strong>
+                          <span> {makeDateReadable(assignment.due_date)}</span>
+                        </div>
+                        <span>{assignment.points} pts</span>
+                      </div>
+                    </div>
+                    <AssignmentControlButtons />
+                  </ListGroupItem>
+                );
+              })}
+            {/* <ListGroupItem className="wd-lesson p-3 ps-2 d-flex flex-row gap-3 align-items-center">
               <BsGripVertical className="fs-3" />
               <MdEditDocument className="fs-3" />
               <div className="d-flex flex-column">
@@ -108,7 +134,7 @@ export default async function Assignments({
                 </div>
               </div>
               <AssignmentControlButtons />
-            </ListGroupItem>
+            </ListGroupItem> */}
           </ListGroup>
         </ListGroupItem>
       </ListGroup>

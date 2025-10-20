@@ -9,51 +9,11 @@ import {
   Col,
   Row,
 } from "react-bootstrap";
+import * as db from "../Database";
+
 export default function Dashboard() {
-  interface course {
-    id: string;
-    image: string;
-    title: string;
-    desc: string;
-  }
-  const courses: course[] = [
-    {
-      id: "1234",
-      image: "/images/react.js.png",
-      title: "CS1234 React JS",
-      desc: "Full Stack software developer",
-    },
-    {
-      id: "CS5200",
-      image: "/images/react.js.png",
-      title: "CS5200 DBMS",
-      desc: "Database Management Systems",
-    },
-    {
-      id: "CS5800",
-      image: "/images/react.js.png",
-      title: "CS5800 Algo",
-      desc: "Algorithms",
-    },
-    {
-      id: "CS5010",
-      image: "/images/react.js.png",
-      title: "CS5010 PDP",
-      desc: "Program Design Paradigm",
-    },
-    {
-      id: "CS7010",
-      image: "/images/react.js.png",
-      title: "CS7010 APDP",
-      desc: "Advanced Program Design Paradigm",
-    },
-    {
-      id: "CS7200",
-      image: "/images/react.js.png",
-      title: "CS7200 Advanced DBMS",
-      desc: "Advanced DataBase Management System",
-    },
-  ];
+  const courses = db.courses;
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -62,27 +22,31 @@ export default function Dashboard() {
         <Row xs={1} md={5} className="g-4">
           {courses.map((course_data, index) => {
             return (
-              <Col className="wd-dashboard-course" style={{ width: "300px" }} key={index}>
+              <Col
+                className="wd-dashboard-course"
+                style={{ width: "300px" }}
+                key={index}
+              >
                 <Card>
                   <Link
-                    href={`/Courses/${course_data.id}/Home`}
+                    href={`/Courses/${course_data._id}/Home`}
                     className="wd-dashboard-course-link text-decoration-none text-dark"
                   >
                     <CardImg
                       variant="top"
-                      src={course_data.image}
+                      src="/images/react.js.png"
                       width="100%"
                       height={160}
                     />
                     <CardBody>
                       <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
-                        {course_data.title}
+                        {course_data.name}
                       </CardTitle>
                       <CardText
                         className="wd-dashboard-course-description overflow-hidden"
                         style={{ height: "100px" }}
                       >
-                        {course_data.desc}
+                        {course_data.description}
                       </CardText>
                       <Button variant="primary">Go</Button>
                     </CardBody>
