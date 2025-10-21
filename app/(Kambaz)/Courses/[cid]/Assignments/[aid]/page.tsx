@@ -177,8 +177,8 @@ export default function AssignmentEditor() {
         </div>
         <hr />
         <div className="d-flex flex-row justify-content-end">
-          <Button className="btn-secondary me-2">Cancel</Button>
-          <Button className="btn-danger">Save</Button>
+          <Button className="btn-secondary me-2" href={`/Courses/${cid}/Assignments`}>Cancel</Button>
+          <Button className="btn-danger" href={`/Courses/${cid}/Assignments`}>Save</Button>
         </div>
       </div>
     );

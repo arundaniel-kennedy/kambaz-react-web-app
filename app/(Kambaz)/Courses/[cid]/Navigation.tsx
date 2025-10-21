@@ -18,7 +18,7 @@ export default function CourseNavigation() {
     "People",
   ];
   return (
-    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 position-sticky" style={{top: "20px"}}>
       {links.map((e, i) => {
         return (
           <Link

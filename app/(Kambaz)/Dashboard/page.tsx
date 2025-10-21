@@ -34,7 +34,7 @@ export default function Dashboard() {
                   >
                     <CardImg
                       variant="top"
-                      src="/images/react.js.png"
+                      src={course_data.image}
                       width="100%"
                       height={160}
                     />

@@ -33,7 +33,7 @@ export default function KambazNavigation() {
         id="wd-neu-link"
         target="_blank"
       >
-        <Image src="/images/NEU.png" width={75} alt="Northeastern University" />
+        <img src="/images/NEU.png" width="75px" alt="Northeastern University" />
       </ListGroupItem>
 
       <ListGroupItem
