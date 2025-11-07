@@ -1,4 +1,9 @@
+"use client";
+import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewCourse, deleteCourse, updateCourse } from "../Courses/reducer";
 import {
   Button,
   Card,
@@ -7,16 +12,56 @@ import {
   CardText,
   CardTitle,
   Col,
+  FormControl,
   Row,
 } from "react-bootstrap";
 import * as db from "../Database";
 
 export default function Dashboard() {
-  const courses = db.courses;
-
+  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const dispatch = useDispatch();
+  const [course, setCourse] = useState<any>({
+    _id: "0",
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+    image: "/images/reactjs.jpg",
+    description: "New Description",
+  });
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <h5>
+        New Course
+        <button
+          className="btn btn-primary float-end"
+          id="wd-add-new-course-click"
+          onClick={addNewCourse}
+        >
+          Add
+        </button>
+        <button
+          className="btn btn-warning float-end me-2"
+          onClick={updateCourse}
+          id="wd-update-course-click"
+        >
+          Update
+        </button>
+      </h5>
+      <br />
+      <FormControl
+        value={course.name}
+        className="mb-2"
+        onChange={(e) => setCourse({ ...course, name: e.target.value })}
+      />
+      <FormControl
+        as="textarea"
+        value={course.description}
+        rows={3}
+        onChange={(e) => setCourse({ ...course, description: e.target.value })}
+      />
+      <hr />
       <h2 id="wd-dashboard-published">Published Courses (7)</h2> <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
@@ -49,6 +94,26 @@ export default function Dashboard() {
                         {course_data.description}
                       </CardText>
                       <Button variant="primary">Go</Button>
+                      <button
+                        onClick={(event) => {
+                          event.preventDefault();
+                          dispatch(deleteCourse(course_data._id));
+                        }}
+                        className="btn btn-danger float-end"
+                        id="wd-delete-course-click"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        id="wd-edit-course-click"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          dispatch(setCourse(course_data));
+                        }}
+                        className="btn btn-warning me-2 float-end"
+                      >
+                        Edit
+                      </button>
                     </CardBody>
                   </Link>
                 </Card>

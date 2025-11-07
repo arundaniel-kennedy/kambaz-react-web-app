@@ -1,0 +1,6 @@
+[submodule "apps"]
+	path = apps
+	url = https://github.com/arundaniel-kennedy/kambaz-pazza-next-js.git
+[submodule "app/Pazza"]
+	path = app/Pazza
+	url = https://github.com/arundaniel-kennedy/kambaz-pazza-next-js.git
