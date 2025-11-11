@@ -4,7 +4,6 @@ import counterReducer from "./ReduxExamples/CounterRedux/counterReducer";
 import addReducer from "./ReduxExamples/AddRedux/addReducer";
 import todosReducer from "./ReduxExamples/todos/todosReducer";
 
-
 const store = configureStore({
     reducer: {
         helloReducer,

@@ -37,18 +37,3 @@ body {
 a {
   color: inherit;
 }
-
-.d-flex {
-  display: flex;
-}
-.flex-row {
-  flex-direction: row;
-  align-items: center;
-}
-.flex-column {
-  flex-direction: column;
-}
-
-.gap-5 {
-  gap: 20px;
-}

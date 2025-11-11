@@ -10,7 +10,10 @@ export default function ArrayStateVariable() {
   const deleteElement = (index: number) => {
     setArray(array.filter((item, i) => i !== index));
   };
-  const { todos } = useSelector((state: any) => state.todosReducer);
+  const { todos } = useSelector(
+    (state: { todosReducer: { todos: [{ id: string; title: string }] } }) =>
+      state.todosReducer
+  );
 
   return (
     <div id="wd-array-state-variables">
@@ -27,7 +30,7 @@ export default function ArrayStateVariable() {
       </ul>
       <hr />
       <ListGroup>
-        {todos.map((todo: any) => (
+        {todos.map((todo: { id: string; title: string }) => (
           <ListGroupItem key={todo.id}>{todo.title}</ListGroupItem>
         ))}
       </ListGroup>

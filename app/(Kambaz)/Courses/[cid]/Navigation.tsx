@@ -4,13 +4,17 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 
-export default function CourseNavigation() {
+export default function CourseNavigation({
+  showSideNav,
+}: {
+  showSideNav: boolean;
+}) {
   const pathname = usePathname();
   const { cid } = useParams();
   const links = [
     "Home",
     "Modules",
-    "Piazza",
+    "Pazza",
     "Zoom",
     "Assignments",
     "Quizzes",
@@ -18,7 +22,11 @@ export default function CourseNavigation() {
     "People",
   ];
   return (
-    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0 position-sticky" style={{top: "20px"}}>
+    <div
+      id="wd-courses-navigation"
+      className={`wd list-group fs-5 rounded-0 position-sticky ${showSideNav ? "": "d-none"}`}
+      style={{ top: "20px" }}
+    >
       {links.map((e, i) => {
         return (
           <Link

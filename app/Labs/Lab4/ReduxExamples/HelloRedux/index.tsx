@@ -1,6 +1,10 @@
+"use client";
 import { useSelector, useDispatch } from "react-redux";
+
 export default function HelloRedux() {
-  const { message } = useSelector((state: any) => state.helloReducer);
+  const { message } = useSelector(
+    (state: { helloReducer: { message: string } }) => state.helloReducer
+  );
   return (
     <div id="wd-hello-redux">
       <h3>Hello Redux</h3>

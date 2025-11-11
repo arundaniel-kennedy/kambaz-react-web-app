@@ -1,6 +1,5 @@
 "use client";
 import { redirect, useParams } from "next/navigation";
-import * as db from "../../../../Database";
 
 import {
   Button,
@@ -11,12 +10,25 @@ import {
 } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaCalendarAlt } from "react-icons/fa";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAssignment } from "../reducer";
+import Link from "next/link";
+import { RootState } from "../../../../store";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
+  const [assignment, setAssignment] = useState(
+    assignments.find((e) => e._id === aid && e.course === cid)
+  );
+  const dispatch = useDispatch();
 
-  const assignment = assignments.find((e) => e._id === aid && e.course === cid);
+  const saveAssignment = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    dispatch(updateAssignment(assignment))
+    redirect(`/Courses/${cid}/Assignments`)
+  }
 
   if (assignment !== undefined) {
     return (
@@ -25,6 +37,9 @@ export default function AssignmentEditor() {
         <FormControl
           id="wd-name"
           defaultValue={assignment.title}
+          onChange={(e) =>
+            setAssignment({ ...assignment, title: e.target.value })
+          }
           className="mb-3"
         />
         <FormControl
@@ -34,6 +49,9 @@ export default function AssignmentEditor() {
           cols={50}
           className="mb-3"
           defaultValue={assignment.description}
+          onChange={(e) =>
+            setAssignment({ ...assignment, description: e.target.value })
+          }
         ></FormControl>
         <div className="d-flex flex-row mb-3 gap-3 align-items-center">
           <FormLabel htmlFor="wd-points" className="w-30 text-end m-0">
@@ -43,6 +61,9 @@ export default function AssignmentEditor() {
             type="number"
             id="wd-points"
             defaultValue={parseInt(assignment.points)}
+            onChange={(e) =>
+              setAssignment({ ...assignment, points: e.target.value })
+            }
             className="w-70"
           />
         </div>
@@ -131,6 +152,9 @@ export default function AssignmentEditor() {
                 name=""
                 id="wd-due-date"
                 defaultValue={assignment.due_date.split("T")[0]}
+                onChange={(e) =>
+                  setAssignment({ ...assignment, due_date: e.target.value })
+                }
                 aria-describedby="basic-addon2"
               />
               <span className="input-group-text" id="basic-addon2">
@@ -148,6 +172,12 @@ export default function AssignmentEditor() {
                     name=""
                     id="wd-avail-date"
                     defaultValue={assignment.available_date.split("T")[0]}
+                    onChange={(e) =>
+                      setAssignment({
+                        ...assignment,
+                        available_date: e.target.value,
+                      })
+                    }
                     aria-describedby="basic-addon3"
                   />
                   <span className="input-group-text" id="basic-addon3">
@@ -165,6 +195,9 @@ export default function AssignmentEditor() {
                     name=""
                     id="wd-until-date"
                     defaultValue={assignment.due_date.split("T")[0]}
+                    onChange={(e) =>
+                      setAssignment({ ...assignment, due_date: e.target.value })
+                    }
                     aria-describedby="basic-addon4"
                   />
                   <span className="input-group-text" id="basic-addon4">
@@ -177,12 +210,19 @@ export default function AssignmentEditor() {
         </div>
         <hr />
         <div className="d-flex flex-row justify-content-end">
-          <Button className="btn-secondary me-2" href={`/Courses/${cid}/Assignments`}>Cancel</Button>
-          <Button className="btn-danger" href={`/Courses/${cid}/Assignments`}>Save</Button>
+          <Link
+            className="btn-secondary me-2"
+            href={`/Courses/${cid}/Assignments`}
+          >
+            Cancel
+          </Link>
+          <Button onClick={saveAssignment} className="btn-danger">
+            Save
+          </Button>
         </div>
       </div>
     );
   } else {
-    redirect(`/Courses/${cid}/Assignments/`)
+    redirect(`/Courses/${cid}/Assignments/`);
   }
 }

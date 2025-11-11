@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTodo, updateTodo, setTodo } from "./todosReducer";
 
 export default function TodoForm() {
-  const { todo } = useSelector((state: any) => state.todosReducer);
+  const { todo } = useSelector((state: { todosReducer: { todo: { title: string } } }) => state.todosReducer);
   const dispatch = useDispatch();
 
   return (

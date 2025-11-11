@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useParams } from "next/navigation";
-import * as db from "../../../Database";
 
 import { addModule, editModule, updateModule, deleteModule } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,11 +10,12 @@ import ModulesControls from "./ModulesControls";
 import { BsGripVertical } from "react-icons/bs";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
+import { RootState } from "../../../store";
 
 export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
-  const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { modules } = useSelector((state:RootState) => state.modulesReducer);
   const dispatch = useDispatch();
   return (
     <div>

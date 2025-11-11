@@ -1,18 +1,17 @@
-import { useState } from "react";
-import { Button, FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 import { useSelector } from "react-redux";
 
 export default function TodoList() {
-  const { todos } = useSelector((state: any) => state.todosReducer);
+  const { todos } = useSelector((state: { todosReducer: { todos: [] } }) => state.todosReducer);
 
   return (
     <div>
       <h2>Todo List</h2>
       <ListGroup>
         <TodoForm />
-        {todos.map((todo: any, index: any) => (
+        {todos.map((todo, index) => (
           <TodoItem todo={todo} key={index} />
         ))}
       </ListGroup>

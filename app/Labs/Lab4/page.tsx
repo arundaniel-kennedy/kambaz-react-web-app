@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 import { Provider } from "react-redux";
 import ArrayStateVariable from "./ArrayStateVariable";
 import BooleanStateVariables from "./BooleanStateVariables";
