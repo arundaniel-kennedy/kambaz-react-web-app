@@ -30,23 +30,33 @@ export default function Labs() {
       <h1>Labs</h1>
       <ul>
         <li>
-          <Link href="/Labs/Lab1" id="wd-lab1-link">
+          <Link href="/Labs/Lab1" id="wd-lab1-link" key="lab1">
             Kambaz
           </Link>
         </li>
         <li>
-          <Link href="/Labs/Lab1" id="wd-lab1-link">
+          <Link href="/Labs/Lab1" id="wd-lab1-link" key="lab1">
             Lab 1: HTML Examples
           </Link>
         </li>
         <li>
-          <Link href="/Labs/Lab2" id="wd-lab2-link">
+          <Link href="/Labs/Lab2" id="wd-lab2-link" key="lab2">
             Lab 2: CSS Basics
           </Link>
         </li>
         <li>
-          <Link href="/Labs/Lab3" id="wd-lab3-link">
+          <Link href="/Labs/Lab3" id="wd-lab3-link" key="lab3">
             Lab 3: JavaScript Fundamentals
+          </Link>
+        </li>
+        <li>
+          <Link href="/Labs/Lab4" id="wd-lab3-link" key="lab4">
+            Lab 4: Redux Fundamentals
+          </Link>
+        </li>
+        <li>
+          <Link href="/Labs/Lab5" id="wd-lab3-link" key="lab5">
+            Lab 5: Node Fundamentals
           </Link>
         </li>
       </ul>
