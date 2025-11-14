@@ -1,9 +1,15 @@
 import EnvironmentVariables from "./EnvironmentVariables";
+import HttpClient from "./HttpClient";
+import Modules from "./Modules";
 import PathParameters from "./PathParameters";
 import QueryParameters from "./QueryParameters";
+import WorkingWithArrays from "./WorkingWithArrays";
+import WorkingWithArraysAsynchronously from "./WorkingWithArraysAsynchronously";
+import WorkingWithObjects from "./WorkingWithObjects";
+import WorkingWithObjectsAsynchronously from "./WorkingWithObjectsAsynchronously";
 const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 
-import "./page.css"
+import "./page.css";
 
 export default function Lab5() {
   return (
@@ -22,6 +28,12 @@ export default function Lab5() {
       <EnvironmentVariables />
       <PathParameters />
       <QueryParameters />
+      <WorkingWithObjects />
+      <Modules />
+      <WorkingWithArrays />
+      <HttpClient />
+      <WorkingWithObjectsAsynchronously />
+      <WorkingWithArraysAsynchronously />
     </div>
   );
 }
