@@ -26,6 +26,7 @@ export default function Dashboard() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
   );
+  console.log(currentUser)
   if (!currentUser) {
     redirect("/Account/Signin");
   }

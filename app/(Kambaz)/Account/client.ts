@@ -10,18 +10,10 @@ interface SigninCredentials {
     password: string;
 }
 
-interface SigninResponse {
-    token: string;
-    user: {
-        _id: string;
-        name: string;
-        email: string;
-    };
-}
-
-export const signin = async (credentials: SigninCredentials): Promise<SigninResponse | any> => {
+export const signin = async (credentials: SigninCredentials) => {
     try {
-        const response = await axios.post<SigninResponse>(`${USERS_API}/signin`, credentials);
+        const response = await axiosWithCredentials.post(`${USERS_API}/signin`, credentials);
+        console.log(response.data)
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
