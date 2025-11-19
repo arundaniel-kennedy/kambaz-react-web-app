@@ -10,7 +10,7 @@ import * as client from "../client";
 
 export default function Signin() {
   const [credentials, setCredentials] = useState({
-    username: "iron_man",
+    email: "iron_man@example.com",
     password: "stark123",
   });
   const dispatch = useDispatch();
@@ -30,12 +30,12 @@ export default function Signin() {
     <div id="wd-signin-screen" style={{ width: "350px" }}>
       <h2>Sign in</h2>
       <FormControl
-        id="wd-username"
-        placeholder="username"
+        id="wd-email"
+        placeholder="email"
         className="mb-2"
-        defaultValue={credentials.username}
+        defaultValue={credentials.email}
         onChange={(e) =>
-          setCredentials({ ...credentials, username: e.target.value })
+          setCredentials({ ...credentials, email: e.target.value })
         }
       />
       <FormControl

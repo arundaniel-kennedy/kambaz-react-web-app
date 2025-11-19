@@ -58,7 +58,7 @@ export default function Dashboard() {
     }
   };
   const fetchEnrollments = async () => {
-    let enrollments = await client.fetchUserEnrollments();
+    const enrollments = await client.fetchUserEnrollments();
     dispatch(setEnrollments(enrollments));
   };
   useEffect(() => {

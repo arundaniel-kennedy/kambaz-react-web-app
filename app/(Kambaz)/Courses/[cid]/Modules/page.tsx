@@ -2,13 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
-import {
-  setModules,
-  addModule,
-  editModule,
-  updateModule,
-  deleteModule,
-} from "./reducer";
+import { setModules, editModule, updateModule } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
 
 import { FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
@@ -25,7 +19,7 @@ export default function Modules() {
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: RootState) => state.modulesReducer);
   const dispatch = useDispatch();
-  
+
   const fetchModules = async () => {
     const modules = await client.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
@@ -36,19 +30,21 @@ export default function Modules() {
 
   const onCreateModuleForCourse = async () => {
     if (!cid) return;
-    const newModule = { name: moduleName, course: cid };
-    const module = await client.createModuleForCourse(cid as string, newModule);
-    dispatch(setModules([...modules, module]));
+    const newModule = { name: moduleName, course: cid as string, _id: "", description: "" };
+    const updatedModule = await client.createModuleForCourse(cid as string, newModule);
+    dispatch(setModules([...modules, updatedModule]));
   };
   const onRemoveModule = async (moduleId: string) => {
     await client.deleteModule(moduleId);
-    dispatch(setModules(modules.filter((m: any) => m._id !== moduleId)));
+    dispatch(setModules(modules.filter((m) => m._id !== moduleId)));
   };
-  const onUpdateModule = async (module: any) => {
+  const onUpdateModule = async (module: {
+    _id: string;
+    name: string;
+    editing?: boolean;
+  }) => {
     await client.updateModule(module);
-    const newModules = modules.map((m: any) =>
-      m._id === module._id ? module : m
-    );
+    const newModules = modules.map((m) => (m._id === module._id ? module : m));
     dispatch(setModules(newModules));
   };
 

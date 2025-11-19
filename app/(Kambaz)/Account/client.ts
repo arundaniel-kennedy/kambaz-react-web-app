@@ -5,23 +5,49 @@ const axiosWithCredentials = axios.create({ withCredentials: true });
 export const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 export const USERS_API = `${HTTP_SERVER}/api/users`;
 
-export const signin = async (credentials: any) => {
+interface SigninCredentials {
+    email: string;
+    password: string;
+}
+
+interface SigninResponse {
+    token: string;
+    user: {
+        _id: string;
+        name: string;
+        email: string;
+    };
+}
+
+export const signin = async (credentials: SigninCredentials): Promise<SigninResponse | any> => {
     try {
-        const response = await axiosWithCredentials.post(`${USERS_API}/signin`, credentials);
+        const response = await axiosWithCredentials.post<SigninResponse>(`${USERS_API}/signin`, credentials);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             if (error.response) {
-                return error.response.data
+                return error.response.data;
             }
         }
     }
 };
-export const signup = async (user: any) => {
+interface SignupUser {
+    username?: string;
+    password?: string;
+}
+
+export const signup = async (user: SignupUser) => {
     const response = await axiosWithCredentials.post(`${USERS_API}/signup`, user);
     return response.data;
 };
-export const updateUser = async (user: any) => {
+interface UpdateUser {
+    _id: string;
+    name?: string;
+    email?: string;
+    password?: string;
+}
+
+export const updateUser = async (user: UpdateUser) => {
     const response = await axiosWithCredentials.put(`${USERS_API}/${user._id}`, user);
     return response.data;
 };

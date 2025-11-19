@@ -17,7 +17,7 @@ export const findMyCourses = async () => {
     const { data } = await axiosWithCredentials.get(`${USERS_API}/current/courses`);
     return data;
 };
-export const createCourse = async (course: any) => {
+export const createCourse = async (course: { _id: string; name: string; number: string; startDate: string; endDate: string; image: string; description: string; }) => {
     const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
     return data;
 };
@@ -25,7 +25,7 @@ export const deleteCourse = async (id: string) => {
     const { data } = await axiosWithCredentials.delete(`${COURSES_API}/${id}`);
     return data;
 };
-export const updateCourse = async (course: any) => {
+export const updateCourse = async (course: { _id: string; name: string; number: string; startDate: string; endDate: string; image: string; description: string; }) => {
     const { data } = await axiosWithCredentials.put(`${COURSES_API}/${course._id}`, course);
     return data;
 };
@@ -34,7 +34,14 @@ export const findModulesForCourse = async (courseId: string) => {
         .get(`${COURSES_API}/${courseId}/modules`);
     return response.data;
 };
-export const createModuleForCourse = async (courseId: string, module: any) => {
+interface Module {
+    _id: string;
+    name: string;
+    description: string;
+    [key: string]: string; // To allow additional properties if needed
+}
+
+export const createModuleForCourse = async (courseId: string, module: Module) => {
     const response = await axiosWithCredentials.post(
         `${COURSES_API}/${courseId}/modules`,
         module

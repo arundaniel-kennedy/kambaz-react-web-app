@@ -21,6 +21,7 @@ export default function Profile() {
     redirect("/Account/Signin");
   };
   const updateProfile = async () => {
+    if (!profile) return;
     const updatedProfile = await client.updateUser(profile);
     dispatch(setCurrentUser(updatedProfile));
   };

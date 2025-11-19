@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormControl, Button } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../reducer";
@@ -10,9 +10,17 @@ import { redirect } from "next/navigation";
 import * as client from "../client";
 
 export default function Signup() {
-  const [user, setUser] = useState<any>({});
+  interface SignupUser {
+    username?: string;
+    password?: string;
+  }
+  const [user, setUser] = useState<SignupUser>({});
   const dispatch = useDispatch();
   const signup = async () => {
+    if (!user.username || !user.password) {
+      alert("All fields are required");
+      return;
+    }
     const currentUser = await client.signup(user);
     dispatch(setCurrentUser(currentUser));
     redirect("/Account/Profile");

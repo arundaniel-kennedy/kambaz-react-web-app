@@ -8,15 +8,26 @@ import {
   FormLabel,
   FormSelect,
 } from "react-bootstrap";
+import { ParamValue } from "next/dist/server/request/params";
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setAssignments, updateAssignment } from "../reducer";
+import { updateAssignment } from "../reducer";
 import Link from "next/link";
 import { RootState } from "../../../../store";
 
 import * as client from "../client";
+
+interface AssignmentStruct {
+    _id: string;
+    title: string;
+    course: ParamValue;
+    description: string;
+    points: number;
+    due_date: string;
+    available_date: string;
+}
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
@@ -30,7 +41,9 @@ export default function AssignmentEditor() {
 
   const saveAssignment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const status = await client.updateAssignment(assignment);
+    if (assignment) {
+      await client.updateAssignment(assignment);
+    }
     dispatch(updateAssignment(assignment));
     redirect(`/Courses/${cid}/Assignments`);
   };
