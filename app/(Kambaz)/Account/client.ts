@@ -21,7 +21,7 @@ interface SigninResponse {
 
 export const signin = async (credentials: SigninCredentials): Promise<SigninResponse | any> => {
     try {
-        const response = await axiosWithCredentials.post<SigninResponse>(`${USERS_API}/signin`, credentials);
+        const response = await axios.post<SigninResponse>(`${USERS_API}/signin`, credentials);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -37,7 +37,7 @@ interface SignupUser {
 }
 
 export const signup = async (user: SignupUser) => {
-    const response = await axiosWithCredentials.post(`${USERS_API}/signup`, user);
+    const response = await axios.post(`${USERS_API}/signup`, user);
     return response.data;
 };
 interface UpdateUser {

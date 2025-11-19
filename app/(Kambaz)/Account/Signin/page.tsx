@@ -10,7 +10,7 @@ import * as client from "../client";
 
 export default function Signin() {
   const [credentials, setCredentials] = useState({
-    email: "iron_man@example.com",
+    email: "iron_man",
     password: "stark123",
   });
   const dispatch = useDispatch();
