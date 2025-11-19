@@ -12,13 +12,19 @@ import {
 import InputGroup from "react-bootstrap/InputGroup";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addAssignment } from "../reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { setAssignments } from "../reducer";
 import Link from "next/link";
+
+import * as client from "../client";
+import { RootState } from "../../../../store";
 
 export default function AddAssignment() {
   const { cid } = useParams();
   const [validated, setValidated] = useState(false);
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentReducer
+  );
   const [assignment, setAssignment] = useState({
     title: "",
     course: cid,
@@ -30,7 +36,7 @@ export default function AddAssignment() {
   });
   const dispatch = useDispatch();
 
-  const saveAssignment = (e: React.FormEvent<HTMLFormElement>) => {
+  const saveAssignment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (form.checkValidity() === false) {
@@ -38,7 +44,11 @@ export default function AddAssignment() {
       e.stopPropagation();
     } else {
       console.log(assignment);
-      dispatch(addAssignment(assignment));
+      const newAssignment = await client.createAssignmentForCourse(
+        cid as string,
+        assignment
+      );
+      dispatch(setAssignments([...assignments, newAssignment]));
       redirect(`/Courses/${cid}/Assignments`);
     }
 

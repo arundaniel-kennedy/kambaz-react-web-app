@@ -1,28 +1,49 @@
+"use client";
+
 import Link from "next/link";
-import { FormControl } from "react-bootstrap";
+import { FormControl, Button } from "react-bootstrap";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../reducer";
+import { redirect } from "next/navigation";
+
+import * as client from "../client";
+
 export default function Signup() {
+  const [user, setUser] = useState<any>({});
+  const dispatch = useDispatch();
+  const signup = async () => {
+    const currentUser = await client.signup(user);
+    dispatch(setCurrentUser(currentUser));
+    redirect("/Account/Profile");
+  };
+
   return (
-    <div id="wd-signup-screen gap-3" style={{ width: "350px"}}>
-      <h3>Sign up</h3>
+    <div className="wd-signup-screen" style={{ width: "350px" }}>
+      <h2>Sign up</h2>
       <FormControl
-        placeholder="username"
+        defaultValue={user.username}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
         className="wd-username mb-2"
-        defaultValue={"alice"}
+        placeholder="username"
       />
       <FormControl
+        defaultValue={user.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        className="wd-password mb-2"
         placeholder="password"
         type="password"
-        className="wd-password mb-2"
-        defaultValue={"123456"}
       />
-      <FormControl
-        placeholder="verify password"
-        type="password"
-        className="wd-password-verify mb-2"
-        defaultValue={"123456"}
-      />
-      <Link href="Profile" className="btn btn-primary w-100"> Sign up </Link>
-      <Link href="Signin"> Sign in </Link>
+      <button
+        onClick={signup}
+        className="wd-signup-btn btn btn-primary mb-2 w-100"
+      >
+        Sign up
+      </button>
+      <br />
+      <Link href="/Account/Signin" className="wd-signin-link">
+        Sign in
+      </Link>
     </div>
   );
 }

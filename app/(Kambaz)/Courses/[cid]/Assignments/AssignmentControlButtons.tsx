@@ -1,26 +1,24 @@
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "./GreenCheckmark";
-import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa6";
 
 export default function AssignmentControlButtons({
-  assignmentId, 
-  deleteAssignment
+  assignmentId,
+  onRemoveAssignment,
 }: {
   assignmentId: string;
-  deleteAssignment: (assignmentId: string) => { type: string; payload: string };
+  onRemoveAssignment: (assignmentId: string) => void;
 }) {
-  const dispatch = useDispatch();
   return (
     <div className="ms-auto">
       <FaTrash
         className="text-danger me-3 mt-1"
         onClick={() => {
-          if(confirm("Are you sure you want to delete?")){
-            dispatch(deleteAssignment(assignmentId));
+          if (confirm("Are you sure you want to delete?")) {
+            onRemoveAssignment(assignmentId);
           }
         }}
-        style={{cursor: "pointer"}}
+        style={{ cursor: "pointer" }}
       />
       <GreenCheckmark />
       <IoEllipsisVertical className="fs-4" />

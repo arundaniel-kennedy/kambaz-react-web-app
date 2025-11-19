@@ -8,9 +8,12 @@ import { BsGripVertical } from "react-icons/bs";
 import { MdEditDocument } from "react-icons/md";
 import AssignmentSectionControl from "./AssignmentSectionControl";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { useSelector } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { setAssignments } from "./reducer";
 import { RootState } from "../../../store";
+
+import * as client from "./client";
+import { useEffect } from "react";
 
 function makeDateReadable(givenDate: string) {
   const locales = "default";
@@ -29,7 +32,24 @@ function makeDateReadable(givenDate: string) {
 
 export default function Assignments() {
   const { cid } = useParams();
-  const { assignments } = useSelector((state:RootState) => state.assignmentReducer);
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentReducer
+  );
+  const dispatch = useDispatch();
+
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
+  
+  const onRemoveAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(setAssignments(assignments.filter((a: any) => a._id !== assignmentId)));
+  };
 
   return (
     <div id="wd-assignments">
@@ -42,7 +62,6 @@ export default function Assignments() {
           </div>
           <ListGroup className="wd-lessons rounded-0">
             {assignments
-              .filter((assignment) => assignment.course === cid)
               .map((assignment) => {
                 return (
                   <ListGroupItem
@@ -77,7 +96,7 @@ export default function Assignments() {
                     </div>
                     <AssignmentControlButtons
                       assignmentId={assignment._id}
-                      deleteAssignment={deleteAssignment}
+                      onRemoveAssignment={onRemoveAssignment}
                     />
                   </ListGroupItem>
                 );

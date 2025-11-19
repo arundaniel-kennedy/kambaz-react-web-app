@@ -2,14 +2,38 @@ import { createSlice } from "@reduxjs/toolkit";
 import { courses, enrollments } from "../Database";
 import { v4 as uuidv4 } from "uuid";
 
-const initialState = {
-    courses: courses,
-    enrollments: enrollments
+interface Course {
+    _id: string;
+    name: string;
+    number: string;
+    startDate: string;
+    endDate: string;
+    department: string;
+    credits: string;
+    description: string;
+    image: string;
+}
+
+interface Enrollment {
+    _id: string;
+    user: string;
+    course: string;
+}
+
+const initialState: {
+    courses: Course[];
+    enrollments: Enrollment[];
+} = {
+    courses: [],
+    enrollments: []
 };
 const coursesSlice = createSlice({
     name: "courses",
     initialState,
     reducers: {
+        setCourses: (state, { payload: courses }) => {
+            state.courses = courses
+        },
         addNewCourse: (state, { payload: course }) => {
             const newCourse = { ...course, _id: uuidv4() };
             state.courses = [...state.courses, newCourse];
@@ -30,6 +54,9 @@ const coursesSlice = createSlice({
                 c._id === course._id ? course : c
             );
         },
+        setEnrollments: (state, { payload: enrollments }) => {
+            state.enrollments = enrollments
+        },
         enrollCourse: (state, { payload: enrollment }) => {
             const newEnrollment = {
                 _id: uuidv4(),
@@ -46,6 +73,6 @@ const coursesSlice = createSlice({
         },
     },
 });
-export const { addNewCourse, deleteCourse, updateCourse, enrollCourse, unEnrollCourse } =
+export const { setCourses, addNewCourse, deleteCourse, updateCourse, setEnrollments, enrollCourse, unEnrollCourse } =
     coursesSlice.actions;
 export default coursesSlice.reducer;

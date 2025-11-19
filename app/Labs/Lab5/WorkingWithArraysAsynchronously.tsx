@@ -109,7 +109,13 @@ export default function WorkingWithArraysAsynchronously() {
               }
             />
             {!todo.editing ? (
-              todo.title
+              <span
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                }}
+              >
+                {todo.title}
+              </span>
             ) : (
               <FormControl
                 className="w-50 float-start"
@@ -122,13 +128,6 @@ export default function WorkingWithArraysAsynchronously() {
                 onChange={(e) => updateTodo({ ...todo, title: e.target.value })}
               />
             )}
-            <span
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
-            >
-              {todo.title}{" "}
-            </span>
           </ListGroupItem>
         ))}
       </ListGroup>{" "}

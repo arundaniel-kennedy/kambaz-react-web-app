@@ -37,23 +37,68 @@ export default function WorkingWithObjects() {
       </a>
       <hr />
       <h4>Modifying Properties</h4>
-      <a
-        id="wd-update-assignment-title"
-        className="btn btn-primary float-end me-3"
-        href={`${ASSIGNMENT_API_URL}/title/${assignment.title}`}
-      >
-        Update Title{" "}
-      </a>
-      <FormControl
-        className="w-75"
-        id="wd-assignment-title"
-        defaultValue={assignment.title}
-        onChange={(e) =>
-          setAssignment({ ...assignment, title: e.target.value })
-        }
-      />
+      <div className="d-flex flex-row justify-content-between">
+        <FormControl
+          className="w-75"
+          id="wd-assignment-title"
+          defaultValue={assignment.title}
+          onChange={(e) =>
+            setAssignment({ ...assignment, title: e.target.value })
+          }
+        />
+        <a
+          id="wd-update-assignment-title"
+          className="btn btn-primary mx-3"
+          href={`${ASSIGNMENT_API_URL}/title/${assignment.title}`}
+          target="blank"
+        >
+          Update Title{" "}
+        </a>
+      </div>
+      <div className="d-flex flex-row justify-content-between my-2">
+        <FormControl
+          type="number"
+          className="w-75"
+          id="wd-assignment-score"
+          defaultValue={assignment.score}
+          onChange={(e) =>
+            setAssignment({ ...assignment, score: parseInt(e.target.value) })
+          }
+        />
+        <a
+          id="wd-update-assignment-score"
+          className="btn btn-primary mx-3"
+          href={`${ASSIGNMENT_API_URL}/score/${assignment.score}`}
+          target="blank"
+        >
+          Update Score{" "}
+        </a>
+      </div>
+      <div className="d-flex flex-row align-items-center">
+        <input
+          type="checkbox"
+          id="wd-assignment-completed"
+          defaultChecked={assignment.completed}
+          onClick={(e) =>
+            setAssignment({
+              ...assignment,
+              completed: !assignment.completed,
+            })
+          }
+        />
+        <label htmlFor="wd-assignment-completed" className="ms-2">
+          Completed
+        </label>
+        <a
+          id="wd-update-assignment-completed"
+          className="btn btn-primary ms-auto me-3"
+          href={`${ASSIGNMENT_API_URL}/completed/${assignment.completed}`}
+          target="blank"
+        >
+          Update Completed
+        </a>
+      </div>
       <hr />
-      <h1 style={{color: "red"}}>Pending 5.2.3.4</h1>
     </div>
   );
 }

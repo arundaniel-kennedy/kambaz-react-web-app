@@ -12,23 +12,28 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAssignment } from "../reducer";
+import { setAssignments, updateAssignment } from "../reducer";
 import Link from "next/link";
 import { RootState } from "../../../../store";
 
+import * as client from "../client";
+
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentReducer
+  );
   const [assignment, setAssignment] = useState(
     assignments.find((e) => e._id === aid && e.course === cid)
   );
   const dispatch = useDispatch();
 
-  const saveAssignment = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const saveAssignment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(updateAssignment(assignment))
-    redirect(`/Courses/${cid}/Assignments`)
-  }
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+    redirect(`/Courses/${cid}/Assignments`);
+  };
 
   if (assignment !== undefined) {
     return (
@@ -60,9 +65,9 @@ export default function AssignmentEditor() {
           <FormControl
             type="number"
             id="wd-points"
-            defaultValue={parseInt(assignment.points)}
+            defaultValue={assignment.points.toString()}
             onChange={(e) =>
-              setAssignment({ ...assignment, points: e.target.value })
+              setAssignment({ ...assignment, points: parseInt(e.target.value) })
             }
             className="w-70"
           />
