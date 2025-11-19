@@ -6,7 +6,7 @@ export const HTTP_SERVER = process.env.NEXT_PUBLIC_HTTP_SERVER;
 export const USERS_API = `${HTTP_SERVER}/api/users`;
 
 interface SigninCredentials {
-    email: string;
+    username: string;
     password: string;
 }
 
