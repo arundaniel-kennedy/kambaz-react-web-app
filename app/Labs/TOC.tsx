@@ -54,6 +54,16 @@ export default function TOC() {
           My GitHub
         </NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink href="https://github.com/arundaniel-kennedy/kambaz-react-web-app" target="_blank">
+          Kambaz Frontend Github
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="https://github.com/arundaniel-kennedy/kambaz-node-server-app" target="_blank">
+          Kambaz backend github
+        </NavLink>
+      </NavItem>
     </Nav>
   );
 }
