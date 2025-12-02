@@ -26,7 +26,6 @@ export default function Dashboard() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
   );
-  console.log(currentUser)
   if (!currentUser) {
     redirect("/Account/Signin");
   }
@@ -51,7 +50,7 @@ export default function Dashboard() {
       } else {
         courses = await client.findMyCourses();
       }
-      console.log(courses);
+      console.log('courses =>',courses);
       dispatch(setCourses(courses));
       fetchEnrollments();
     } catch (error) {
@@ -60,6 +59,7 @@ export default function Dashboard() {
   };
   const fetchEnrollments = async () => {
     const enrollments = await client.fetchUserEnrollments();
+    console.log('enrolled', enrollments)
     dispatch(setEnrollments(enrollments));
   };
   useEffect(() => {
@@ -93,11 +93,11 @@ export default function Dashboard() {
     fetchEnrollments();
   };
   const onEnrollCourse = async (courseId: string) => {
-    await client.enrollCourse(courseId);
+    await client.enrollIntoCourse(currentUser._id, courseId);
     fetchCourses();
   };
   const onUnEnrollCourse = async (courseId: string) => {
-    await client.unEnrollCourse(courseId);
+    await client.unenrollFromCourse(currentUser._id, courseId);
     fetchCourses();
   };
   return (
@@ -109,7 +109,7 @@ export default function Dashboard() {
           style={{ height: "fit-content" }}
           onClick={() => setShowAll(!showAll)}
         >
-          Enrollments
+          {showAll ? "My Courses": "All Courses"}
         </Button>
       </div>
       <hr />

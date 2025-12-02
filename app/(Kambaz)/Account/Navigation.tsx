@@ -24,6 +24,9 @@ export default function AccountNavigation() {
           </Link>
         );
       })}
+      {currentUser && currentUser.role === "ADMIN" && (
+       <Link href={`/Account/Users`} className={`list-group-item border-0
+              ${pathname.includes('Users') ? "active" : "text-danger"}`}> Users </Link> )}
     </div>
   );
 }

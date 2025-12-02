@@ -30,11 +30,11 @@ export const createAssignmentForCourse = async (courseId: string, module: Assign
     );
     return response.data;
 };
-export const deleteAssignment = async (moduleId: string) => {
-    const response = await axiosWithCredentials.delete(`${ASSIGNMENTS_API}/${moduleId}`);
+export const deleteAssignment = async (courseId:string, moduleId: string) => {
+    const response = await axiosWithCredentials.delete(`${COURSES_API}/${courseId}/assignments/${moduleId}`);
     return response.data;
 };
-export const updateAssignment = async (module: AssignmentStruct) => {
-    const { data } = await axiosWithCredentials.put(`${ASSIGNMENTS_API}/${module._id}`, module);
+export const updateAssignment = async (courseId:string, module: AssignmentStruct) => {
+    const { data } = await axiosWithCredentials.put(`${COURSES_API}/${courseId}/assignments/${module._id}`, module);
     return data;
 };

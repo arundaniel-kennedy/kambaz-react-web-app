@@ -35,14 +35,13 @@ export default function AssignmentEditor() {
     (state: RootState) => state.assignmentReducer
   );
   const [assignment, setAssignment] = useState(
-    assignments.find((e) => e._id === aid && e.course === cid)
+    assignments.find((e) => e._id === aid)
   );
   const dispatch = useDispatch();
-
   const saveAssignment = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (assignment) {
-      await client.updateAssignment(assignment);
+      await client.updateAssignment(cid as string, assignment);
     }
     dispatch(updateAssignment(assignment));
     redirect(`/Courses/${cid}/Assignments`);
@@ -241,6 +240,6 @@ export default function AssignmentEditor() {
       </div>
     );
   } else {
-    redirect(`/Courses/${cid}/Assignments/`);
+    // redirect(`/Courses/${cid}/Assignments/`);
   }
 }

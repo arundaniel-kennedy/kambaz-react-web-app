@@ -39,6 +39,7 @@ export default function Assignments() {
 
   const fetchAssignments = async () => {
     const assignments = await client.findAssignmentsForCourse(cid as string);
+    console.log(assignments)
     dispatch(setAssignments(assignments));
   };
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function Assignments() {
 
   
   const onRemoveAssignment = async (assignmentId: string) => {
-    await client.deleteAssignment(assignmentId);
+    await client.deleteAssignment(cid as string, assignmentId);
     dispatch(setAssignments(assignments.filter((a) => a._id !== assignmentId)));
   };
 
