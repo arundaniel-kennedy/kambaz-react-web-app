@@ -16,7 +16,8 @@ export default function Session({ children }: { children: React.ReactNode }) {
       dispatch(setCurrentUser(currentUser));
     } catch (err) {
       console.log(err);
-      if (!path.includes("/Account/Signin")) redirect("/Account/Signin");
+      // if (!path.includes("/Account/Signin")) 
+      // redirect("/Account/Signin");
     }
     setPending(false);
   };
